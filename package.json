@@ -1,0 +1,19 @@
+{
+  "name": "socket.io_learning",
+  "version": "1.0.0",
+  "description": "learn to create a chat app with socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plsg/socket.io_learning.git"
+  },
+  "author": "pessage",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plsg/socket.io_learning/issues"
+  },
+  "homepage": "https://github.com/plsg/socket.io_learning#readme"
+}
