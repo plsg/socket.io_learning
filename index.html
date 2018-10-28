@@ -45,20 +45,20 @@
             });
                 
 
-            // keyboard banging indicator
+            // *** typing indicator ***
             $('#m').on('keyup', function(){
-                console.log('the user is typing');
+                // console.log('emit: typing');
                 socket.emit('typing');
             }).blur(function(){
-                console.log('the input field has lost focus');
+                // console.log('emit: not typing');
                 socket.emit('not typing');
             });
             socket.on('typing', function(data){
-                console.log('we find out the keyboard is being used');
+                // console.log('received: typing');
                 $('#indicator').text(data);
             });
             socket.on('not typing', function(data){
-                console.log('we find out the input is no longer in focus');
+                // console.log('received: not typing');
                 $('#indicator').text(data);
             });
 

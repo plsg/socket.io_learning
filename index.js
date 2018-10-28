@@ -18,14 +18,18 @@ io.on('connection', function (socket) {
         console.log('user disconnected');
     });
     
+    
+    // *** typing indicator ***
     socket.on('typing', function () {
-        console.log('typing');
+        // console.log('broadcast: typing');
         socket.broadcast.emit('typing', 'someone is typing');
     });
     socket.on('not typing', function () {
-        console.log('not typing');
+        // console.log('broadcast: not typing');
         socket.broadcast.emit('not typing', '...');
     });
+
+
 });
 
 http.listen(3000, function () {
