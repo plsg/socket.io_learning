@@ -31,29 +31,3 @@ io.on('connection', function (socket) {
 http.listen(3000, function () {
     console.log('listening on *:3000');
 });
-
-
-// isTyping();
-
-// var isTyping = function () {
-//     var typing = false;
-//     var timeout = undefined;
-
-//     function timeoutFunction() {
-//         typing = false;
-//         socket.emit(noLongerTypingMessage);
-//     }
-    
-//     function onKeyDownNotEnter() {
-//         if (typing == false) {
-//             console.log('not typing');
-//             typing = true;
-//             socket.emit(typingMessage);
-//             timeout = setTimeout(timeoutFunction, 5000);
-//         } else {
-//             console.log('typing');
-//             clearTimeout(timeout);
-//             timeout = setTimeout(timeoutFunction, 5000);
-//         }
-//     }
-// }
