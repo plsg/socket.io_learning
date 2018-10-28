@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { position: relative; margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: Helvetica, Arial, sans-serif; min-height: 50vh; width: 80%; margin: 10% auto; }
+      form { background: rgb(0, 0, 0); padding: 3px; position: absolute; bottom: 0; width: 100%; }
+      form p { font-style: italic; position: absolute; margin-top: -1.5rem; color: rgb(124, 124, 124); }
+      form input { border: 0; padding: 10px; width: 80%; margin-right: .5%; }
+      form button { width: 19%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <ul id="messages">
+        <li><p>hello</p></li>
+    </ul>
+    <form action="">
+      <p id="indicator">...</p>
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+
+            // *** app.js ***
+
+            var socket = io();
+
+            $('form').submit(function(){
+                socket.emit('chat message', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+            socket.on('user connected', function(m){
+                $('#messages').append($('<li>').text(m));
+            });
+            socket.on('chat message', function(msg){
+                $('#indicator').text('');
+                $('#messages').append($('<li>').text(msg));
+            });
+                
+
+            // keyboard banging indicator
+            $('#m').on('keyup', function(){
+                console.log('the user is typing');
+                socket.emit('typing');
+            }).blur(function(){
+                console.log('the input field has lost focus');
+                socket.emit('not typing');
+            });
+            socket.on('typing', function(data){
+                console.log('we find out the keyboard is being used');
+                $('#indicator').text(data);
+            });
+            socket.on('not typing', function(data){
+                console.log('we find out the input is no longer in focus');
+                $('#indicator').text(data);
+            });
+
+
+        });
+    </script>
+  </body>
+</html>

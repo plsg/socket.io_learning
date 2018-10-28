@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/plsg/socket.io_learning#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "jquery": "^3.3.1",
+    "socket.io": "^2.1.1"
   }
 }
