@@ -33,14 +33,14 @@
 
             $('form').submit(function(){
                 socket.emit('chat message', $('#m').val());
-                $('#m').val('');
+                $('#m').val('').blur();
                 return false;
             });
             socket.on('user connected', function(m){
                 $('#messages').append($('<li>').text(m));
             });
             socket.on('chat message', function(msg){
-                $('#indicator').text('');
+                $('#indicator').text('...');
                 $('#messages').append($('<li>').text(msg));
             });
                 
